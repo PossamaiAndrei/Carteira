@@ -10,8 +10,8 @@
         $this._valor_compra = $valor_compra
     }
 
-    [string]get_papel(){
-        return $this._papel.ToString()
+    [string]get_papel(){     
+        return $this._papel.get_codigo_papel()
     }
 
     [int]get_quantidade(){
@@ -23,7 +23,7 @@
     }
 
     [string]to_string(){
-        return "Indíce: " +  $this._papel.get_codigo_papel + " | Quantidade: " + $this.get_quantidade() + " | Valor: " + $this.get_valor_compra() 
+        return "Indíce: " +  $this._papel.get_codigo_papel() + " | Quantidade: " + $this.get_quantidade() + " | Valor: " + $this.get_valor_compra() 
     }
 
 }
