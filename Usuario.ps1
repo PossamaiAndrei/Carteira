@@ -6,12 +6,11 @@
     [float]$_carteira
     [array]$_operacoes
 
-    Usuario($nome_completo, $login, $senha, $carteira, $operacoes){
-        $this._nome_completo = $nome_completo
+    Usuario($nome_completo, $login, $senha, $carteira){
+         $this._nome_completo = $nome_completo
         $this._login = $login
         $this._senha = $senha
         $this._carteira = $carteira
-        $this._operacoes = $operacoes
     }
 
     [string] get_nome_completo(){
@@ -26,15 +25,16 @@
         return $this._operacoes
     }   
 
-    [void] add_operacao([object]$operacao){
-        $this._operacoes += $operacao
-    } 
-
-    [void] add_carteira([float]$valor){
-        $this._carteira += $valor
-    }
-
     [string] to_string(){
         return "Nome: " + $this.get_nome_completo() + " | Carteira: " + $this.get_carteira() + " | Operações: " + $this._operacoes.Count 
+    }
+
+    [void] add_operacao($operacao){
+        $this._carteira += $operacao.get_valor_operacao()
+        $this._operacoes += $operacao
+    }
+
+    [void] add_carteira($valor){
+        $this._carteira += $valor
     }
 }
