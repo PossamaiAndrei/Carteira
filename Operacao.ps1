@@ -1,13 +1,12 @@
-﻿Class Operacao{
+﻿Class _Operacao{
    
     [object]$_papel
     [int]$_quantidade
-    [float]$_valor_compra
+    [float]$_valor_operacao
 
-    Operacao($papel, $quantidade, $valor_compra){
+    _Operacao($papel, $quantidade){
         $this._papel = $papel
         $this._quantidade = $quantidade
-        $this._valor_compra = $valor_compra
     }
 
     [string]get_papel(){     
@@ -18,12 +17,36 @@
         return $this._quantidade
     }
 
-    [float]get_valor_compra(){
-        return $this._valor_compra
+    [float]get_valor_operacao(){
+        return $this._valor_operacao
     }
 
     [string]to_string(){
-        return "Indíce: " +  $this._papel.get_codigo_papel() + " | Quantidade: " + $this.get_quantidade() + " | Valor: " + $this.get_valor_compra() 
+        return "Indíce: " +  $this._papel.get_codigo_papel() + " | Quantidade: " + $this.get_quantidade() + " | Valor: " + $this.get_valor_operacao() 
+    }
+
+}
+
+class Compra : _Operacao {
+
+    Compra($papel, $quantidade) : base($papel, $quantidade){
+        $this._valor_operacao = -$this.calc_valor_operacao()
+    }
+    
+    [float] calc_valor_operacao(){
+        return $this._papel.get_valor() * $this._quantidade
+    }
+
+}
+
+class Venda : _Operacao {
+
+    Venda($papel, $quantidade) : base($papel, $quantidade){
+        $this._valor_operacao = $this.calc_valor_operacao()
+    }
+
+    [float] calc_valor_operacao(){
+        return $this._valor_operacao = $this._papel.get_valor() * $this._quantidade
     }
 
 }
